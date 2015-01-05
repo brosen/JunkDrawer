@@ -11,14 +11,15 @@
 </head>
 <body>
 	<h1 id="p2" ng-controller="HelloWorldCtrl">{{helloMessage}}</h1>
-	<h2 id="p2" ng-controller="NameCtrl">{{name}}</h2>
+	<h2 id="p2" ng-controller="NameCtrl">{{firstName}} {{lastName}}</h2>
 	<script src="angular.min.js"></script>
 	<script text="text/javascript">
 		function HelloWorldCtrl($scope){
 			$scope.helloMessage="Hello World";
 		}
 		function NameCtrl($scope){
-			$scope.name="Brad Rosen";
+			$scope.firstName="Brad";
+			$scope.lastName="Rosen";
 		}
 	</script>
 </body>
