@@ -1,0 +1,5 @@
+git pull -v --no-rebase --progress "<remote>" develop
+git branch
+git checkout develop
+
+git.exe submodule update --init -- "<>"
