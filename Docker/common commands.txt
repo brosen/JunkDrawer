@@ -1,0 +1,15 @@
+docker images
+docker container ls -a
+docker rm $(docker ps -aq)
+docker kill <>
+
+
+
+docker build -t myimage .
+docker create myimage
+docker start <>
+docker stop <>
+docker rm <>
+docker attach --sig-proxy=false <>
+
+docker run -it --rm myimage  -> create, start, stop, remove
