@@ -13,3 +13,9 @@ docker rm <>
 docker attach --sig-proxy=false <>
 
 docker run -it --rm myimage  -> create, start, stop, remove
+
+
+docker rmi <Image> <>
+docker rmi $(docker images -f "dangling=true" -q)
+
+docker inspect <container>
