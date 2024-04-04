@@ -1,0 +1,23 @@
+--read josn at root.Arguments then take first in the list
+SET @arguments = JSON_VALUE(JSON_VALUE(@json,'$.Arguments'), '$[0]'); 
+
+-- Task.Name in the Agruments section from above
+SET @Name = JSON_QUERY(@arguments, '$.Task.Name'); 
+
+--Take a json, break it down and get a list and turn that list into comma separated string
+--OpenJSON turns it into a table and STRING_AGG is what takes the rows into 1 string
+SELECT @ListOfThings = STRING_AGG( value ,',') From OpenJSON(JSON_QUERY(@arguments, '$.Task.ListOfThings'), '$');
+
+--Alternative to above if STRING_AGG isn't supported
+select
+               distinct 
+               stuff((
+                              select ',' + tbl2.[value]
+                              from OpenJSON(JSON_QUERY(@arguments, '$.Task.ListOfThings'), '$') tbl2
+                              where tbl2.[value] = [value]
+                              order by tbl2.[value]
+                              for xml path('')
+               ),1,1,'') as tbl1
+From OpenJSON(JSON_QUERY(@arguments, '$.Task.ListOfThings'), '$')
+group by [value]
+
